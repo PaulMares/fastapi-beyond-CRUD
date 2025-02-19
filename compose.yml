@@ -22,8 +22,10 @@ services:
       - "8000:8000"
 
     depends_on:
-      - db
-      - redis
+        db:
+          condition: service_healthy
+        redis:
+          condition: service_healthy
 
     networks:
       - app-network
@@ -44,6 +46,10 @@ services:
 
     networks:
       - app-network
+
+    healthcheck:
+      test: pg_isready
+
   redis:
     image: redis:6
 
@@ -52,6 +58,9 @@ services:
 
     networks:
      - app-network
+
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
 
   celery:
     build: .
