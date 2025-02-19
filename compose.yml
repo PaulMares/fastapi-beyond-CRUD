@@ -17,6 +17,7 @@ services:
       MAIL_FROM_NAME: ${MAIL_FROM_NAME}
       DOMAIN: ${DOMAIN}
       REDIS_URL: ${REDIS_URL}
+    env_file: .env.example
 
     ports:
       - "8000:8000"
