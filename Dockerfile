@@ -8,6 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+COPY ./.env.example ./.env
+
 EXPOSE 8000
 
 ENV HOST 0.0.0.0
